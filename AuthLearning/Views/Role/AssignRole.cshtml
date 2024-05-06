@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "AssignRole";
+}
+
+<h3 class="alert alert-primary">Assign Role To User</h3>
+
+<h5 id="act" class="text-primary">@ViewBag.msg</h5>
+
+<form asp-action="AssignRole" method="post">
+    <div class="row">
+        <div class="col-md-5">
+            <select name="useremail" class="form-control">
+                @if (ViewBag.userlist != null)
+                {
+                    foreach (var item in ViewBag.userlist)
+                    {
+                        <option value="@item.Email"> @item.Email </option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-5">
+            <select name="userrole" class="form-control">
+                @if (ViewBag.rolelist != null)
+                {
+                    foreach (var item in ViewBag.rolelist)
+                    {
+                        <option value="@item.NormalizedName"> @item.NormalizedName </option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success"> Assign Role </button>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#act').fadeOut(6000);
+        });
+    </script>
+}
